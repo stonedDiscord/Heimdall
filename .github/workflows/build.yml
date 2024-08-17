@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
     - name: Install dependencies
       run: |
         sudo apt update
@@ -23,7 +23,7 @@ jobs:
         cp ./Linux/README ./build/bin/
 
     - name: Upload Artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: linux
         path: ./build/bin/
@@ -32,7 +32,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
     - uses: msys2/setup-msys2@v2
       with:
         update: true
@@ -54,7 +54,7 @@ jobs:
         cmake -G "MSYS Makefiles" -DCMAKE_BUILD_TYPE=Release ..
         make
         cd bin
-        windeployqt.exe heimdall-frontend.exe
+        windeployqt.exe --no-angle heimdall-frontend.exe
         cd ..
         cd ..
         mkdir ./build/bin/Drivers/
@@ -62,7 +62,7 @@ jobs:
         cp ./Win32/Drivers/zadig.exe ./build/bin/Drivers/
 
     - name: Upload Artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: windows
         path: ./build/bin/
