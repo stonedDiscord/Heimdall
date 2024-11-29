@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@master
     - name: Install dependencies
       run: |
         sudo apt update
@@ -23,7 +23,7 @@ jobs:
         cp ./Linux/README ./build/bin/
 
     - name: Upload Artifacts
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@master
       with:
         name: linux
         path: ./build/bin/
@@ -62,7 +62,7 @@ jobs:
         cp ./Win32/Drivers/zadig.exe ./build/bin/Drivers/
 
     - name: Upload Artifacts
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@master
       with:
         name: windows
         path: ./build/bin/
